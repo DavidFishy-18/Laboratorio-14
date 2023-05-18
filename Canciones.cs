@@ -8,10 +8,10 @@ namespace Laboratorio__14
     public class Canciones
     {
         string nombre, artista;
-        float duracion;
+        string duracion;
 
         public string Nombre { get => nombre; set => nombre = value; }
         public string Artista { get => artista; set => artista = value; }
-        public float Duracion { get => duracion; set => duracion = value; }
+        public string Duracion { get => duracion; set => duracion = value; }
     }
 }

@@ -85,6 +85,7 @@ namespace Laboratorio__14
             al.Titulo = TextBox1.Text; al.Artista = TextBox2.Text; al.C = c; al.Fecha = TextBox3.Text;
 
             a.Add(al); GrabarP(a); c.Clear(); GrabarC(c); TextBox1.Text = ""; TextBox2.Text = ""; TextBox3.Text = "";
+            Response.Write("<script>alert('Album registrado exitosamente')</script>");
         }
     }
 }

@@ -13,9 +13,9 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Fecha de publicacion&nbsp;
                 <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
             </p>
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nombre de cancion&nbsp;
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nombre de la cancion&nbsp;
                 <asp:TextBox ID="TextBox4" runat="server"></asp:TextBox>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Artista(s)&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Artista&nbsp;
                 <asp:TextBox ID="TextBox5" runat="server"></asp:TextBox>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Tiempo de duracion&nbsp;
                 <asp:TextBox ID="TextBox6" runat="server"></asp:TextBox>

@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Actualizar.aspx.cs" Inherits="Laboratorio__14.Actualizar" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h2>Actualizar albumes</h2>
-    <p>&nbsp;</p>
+    <p>Actualizar datos de un album.</p>
     <p>&nbsp;&nbsp;Seleccione el album a actualizar&nbsp;
         <asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" Width="120px" AutoPostBack="True">
         </asp:DropDownList>

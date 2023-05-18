@@ -13,15 +13,18 @@ namespace Laboratorio__14
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            List<Albumes> a = new List<Albumes>();
+            if(!IsPostBack)
+            {
+                List<Albumes> a = new List<Albumes>();
 
-            a = LeerP();
+                a = LeerP();
 
-            DropDownList1.DataSource = null;
-            DropDownList1.DataValueField = "Artista";
-            DropDownList1.DataTextField = "Titulo";
-            DropDownList1.DataSource = a;
-            DropDownList1.DataBind(); DropDownList2.Enabled = false;
+                DropDownList1.DataSource = null;
+                DropDownList1.DataValueField = "Artista";
+                DropDownList1.DataTextField = "Titulo";
+                DropDownList1.DataSource = a;
+                DropDownList1.DataBind(); DropDownList2.Enabled = false;
+            }
         }
 
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
@@ -30,7 +33,7 @@ namespace Laboratorio__14
 
             a = LeerP();
 
-            for(int i = 0; i < a.Count; i++) if(DropDownList1.SelectedValue.Equals(a[i].Artista)) ind = i;
+            for (int i = 0; i < a.Count; i++) if (DropDownList1.SelectedValue.Equals(a[i].Artista)) ind = i;
 
             TextBox1.Text = a[ind].Titulo; TextBox2.Text = a[ind].Artista; TextBox3.Text = a[ind].Fecha;
 
@@ -67,10 +70,12 @@ namespace Laboratorio__14
             a = LeerP();
 
             for(int i = 0; i < a.Count; i++) if(DropDownList1.SelectedValue.Equals(a[i].Artista)) ind = i;
-            for(int i = 0; i < a.Count; i++) if(DropDownList2.SelectedValue.Equals(a[i].C[i].Nombre)) ind2 = i;
 
-            TextBox1.Text = a[ind].Titulo; TextBox2.Text = a[ind].Artista; TextBox3.Text = a[ind].Fecha;
-            TextBox4.Text = a[ind].C[ind2].Nombre; TextBox5.Text = a[ind].C[ind2].Artista; 
+            int cant = a[ind].C.Count;
+
+            for(int i = 0; i < cant; i++) if(DropDownList2.SelectedValue.Equals(a[ind].C[i].Nombre)) ind2 = i;
+
+            TextBox4.Text = a[ind].C[ind2].Nombre; TextBox5.Text = a[ind].C[ind2].Artista;
             TextBox6.Text = a[ind].C[ind2].Duracion;
         }
 
@@ -81,12 +86,17 @@ namespace Laboratorio__14
             a = LeerP();
 
             for (int i = 0; i < a.Count; i++) if(DropDownList1.SelectedValue.Equals(a[i].Artista)) ind = i;
-            for (int i = 0; i < a.Count; i++) if(DropDownList2.SelectedValue.Equals(a[i].Artista)) ind2 = i;
+
+            int cant = a[ind].C.Count;
+
+            for (int i = 0; i < cant; i++) if(DropDownList2.SelectedValue.Equals(a[ind].C[i].Nombre)) ind2 = i;
 
             a[ind].Titulo = TextBox1.Text; a[ind].Artista = TextBox2.Text; a[ind].Fecha = TextBox3.Text;
             a[ind].C[ind2].Nombre = TextBox4.Text; a[ind].C[ind2].Artista = TextBox5.Text; a[ind].C[ind2].Duracion = TextBox6.Text;
 
             GrabarP(a); Response.Write("<script>alert('Album actualizado exitosamente')</script>");
+
+            TextBox1.Text = ""; TextBox2.Text = ""; TextBox3.Text = ""; TextBox4.Text = ""; TextBox5.Text = ""; TextBox6.Text = "";
         }
     }
 }

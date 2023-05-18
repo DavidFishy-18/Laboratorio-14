@@ -34,11 +34,11 @@ namespace Laboratorio__14
 
             TextBox1.Text = a[ind].Titulo; TextBox2.Text = a[ind].Artista; TextBox3.Text = a[ind].Fecha;
 
-            DropDownList1.DataSource = null;
-            DropDownList1.DataValueField = "Artista";
-            DropDownList1.DataTextField = "Nombre";
-            DropDownList1.DataSource = a[ind].C;
-            DropDownList1.DataBind(); DropDownList2.Enabled = false;
+            DropDownList2.DataSource = null;
+            DropDownList2.DataValueField = "Nombre";
+            DropDownList2.DataTextField = "Nombre";
+            DropDownList2.DataSource = a[ind].C;
+            DropDownList2.DataBind();
         }
 
         private List<Albumes> LeerP()
@@ -58,6 +58,35 @@ namespace Laboratorio__14
             string json = JsonConvert.SerializeObject(c);
             string archivo = Server.MapPath("Albumes.json");
             System.IO.File.WriteAllText(archivo, json);
+        }
+
+        protected void DropDownList2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<Albumes> a = new List<Albumes>(); int ind = 0, ind2 = 0; DropDownList2.Enabled = true;
+
+            a = LeerP();
+
+            for(int i = 0; i < a.Count; i++) if(DropDownList1.SelectedValue.Equals(a[i].Artista)) ind = i;
+            for(int i = 0; i < a.Count; i++) if(DropDownList2.SelectedValue.Equals(a[i].C[i].Nombre)) ind2 = i;
+
+            TextBox1.Text = a[ind].Titulo; TextBox2.Text = a[ind].Artista; TextBox3.Text = a[ind].Fecha;
+            TextBox4.Text = a[ind].C[ind2].Nombre; TextBox5.Text = a[ind].C[ind2].Artista; 
+            TextBox6.Text = a[ind].C[ind2].Duracion;
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            List<Albumes> a = new List<Albumes>(); int ind = 0, ind2 = 0;
+
+            a = LeerP();
+
+            for (int i = 0; i < a.Count; i++) if(DropDownList1.SelectedValue.Equals(a[i].Artista)) ind = i;
+            for (int i = 0; i < a.Count; i++) if(DropDownList2.SelectedValue.Equals(a[i].Artista)) ind2 = i;
+
+            a[ind].Titulo = TextBox1.Text; a[ind].Artista = TextBox2.Text; a[ind].Fecha = TextBox3.Text;
+            a[ind].C[ind2].Nombre = TextBox4.Text; a[ind].C[ind2].Artista = TextBox5.Text; a[ind].C[ind2].Duracion = TextBox6.Text;
+
+            GrabarP(a); Response.Write("<script>alert('Album actualizado exitosamente')</script>");
         }
     }
 }
